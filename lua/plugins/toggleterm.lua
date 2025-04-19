@@ -17,6 +17,7 @@ return {
   version = '*',
   ---@module 'toggleterm'
   ---@type ToggleTermConfig?
+  ---@diagnostic disable-next-line: missing-fields
   opts = {
     open_mapping = [[<C-\>]],
     direction = 'float',

@@ -16,7 +16,7 @@ return {
     { '<leader>e', ':Neotree toggle<CR>', desc = 'Toggle file explorer', silent = true },
     { '\\', ':Neotree reveal<CR>', desc = 'Toggle file explorer', silent = true },
   },
-  ---@module ""
+  ---@module 'neo-tree'
   ---@type neotree.Config?
   opts = {
     -- Close neo-tree if it is the last window left in the tab
