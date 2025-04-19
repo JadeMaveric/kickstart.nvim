@@ -4,6 +4,7 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',
+  enabled = true,
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
@@ -20,7 +21,8 @@ return {
   ---@type neotree.Config?
   opts = {
     -- Close neo-tree if it is the last window left in the tab
-    close_if_last_window = true,
+    -- NOTE: This seems to be buggy, so I've disabled it
+    close_if_last_window = false,
     enable_git_status = true,
     enable_diagnostics = true,
     -- When opening files, do not use windows containing these filestypes or buftypes

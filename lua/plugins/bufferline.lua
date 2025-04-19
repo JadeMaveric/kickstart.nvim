@@ -11,7 +11,7 @@ return {
       -- TODO: This doesn't seem to work
       offsets = {
         {
-          filetype = 'NvimTree',
+          filetype = 'neo-tree',
           text = 'File Explorer',
           highlights = 'Directory',
           separator = true, -- Use the default separator
