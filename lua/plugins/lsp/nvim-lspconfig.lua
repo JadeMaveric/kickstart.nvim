@@ -15,6 +15,9 @@ return {
 
     -- Allows extra capabilities provided by blink.cmp
     'saghen/blink.cmp',
+
+    -- Allows for folding capabilities
+    -- 'kevinhwang91/nvim-ufo',
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -61,7 +64,7 @@ return {
 
         -- Rename the variable under your cursor.
         --  Most Language Servers support renaming across files, etc.
-        map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>lr', vim.lsp.buf.rename, '[R]ename')
 
         -- Execute a code action, usually your cursor needs to be on top of an error
         -- or a suggestion from your LSP for this to activate.
@@ -186,6 +189,12 @@ return {
     --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+    -- Extend to allow folding (thanks to kevinhwang91/nvim-ufo)
+    capabilities.textDocument.foldingRange = {
+      dynamicRegistration = false,
+      lineFoldingOnly = true,
+    }
+
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
     --
@@ -197,8 +206,33 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       -- clangd = {},
-      -- gopls = {},
-      -- pyright = {},
+      gopls = {},
+
+      -- [Python]
+      -- https://detachhead.github.io/basedpyright
+      -- basedpyright = {} -- this seems a little too featureful
+      pyright = {
+        settings = {
+          pyright = {
+            -- Use Ruff's import organizer
+            disableOrganizeImports = true,
+          },
+        },
+      },
+      ruff = {
+        -- In practice, ruff only provides linter-like diagnostics and some code actions
+        -- It is not a full LSP yet. So diable it as a hover provider to avoid conflicts with Pyright
+        ---@param client vim.lsp.Client
+        on_attach = function(client)
+          client.server_capabilities.hoverProvider = false
+        end,
+      },
+
+      -- [TOML]
+      taplo = {},
+
+      -- [Typescript]
+      -- https://github.com/typescript-language-server/typescript-language-server
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -206,8 +240,7 @@ return {
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`ts_ls`) will work just fine
-      -- ts_ls = {},
-      --
+      ts_ls = {},
 
       lua_ls = {
         -- cmd = { ... },

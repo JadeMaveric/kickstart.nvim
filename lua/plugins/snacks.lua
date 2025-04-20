@@ -7,14 +7,6 @@ return { -- A collection of QoL plugins for Neovim
   opt = {
     -- Prevent LSP & Treesitter from attaching to largefiles
     bigfile = {},
-    -- Visualise idents
-    -- TODO: This doesn't seem to auto enable, I need to run `:lua Snacks.indent.enable()`
-    indent = {
-      animate = {
-        -- TODO: This isn't honoured as expected
-        enable = false,
-      },
-    },
     -- Better `vim.ui.input`
     input = {},
     -- Git

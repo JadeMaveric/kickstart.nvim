@@ -7,6 +7,13 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>le', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror message' })
+-- TODO: Use vim.diagnostic.jump({count = -1})
+vim.keymap.set('n', '<leader>lj', function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = 'Goto next diagnostic' })
+vim.keymap.set('n', '<leader>lk', function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = 'Goto prev diagnostic' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -41,6 +48,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- Navigate buffers
 vim.keymap.set('n', '<S-h>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Go to prev buffer' })
 vim.keymap.set('n', '<S-l>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<leader>bb', '<cmd>BufferLinePick<cr>', { desc = 'Close the current buffer' })
 vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { desc = 'Close the current buffer' })
+vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<cr>', { desc = 'Close the current buffer' })
 vim.keymap.set('n', '[b', '<cmd>BufferLineMovePrev<cr>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', ']b', '<cmd>BufferLineMoveNext<cr>', { desc = 'Go to next buffer' })
