@@ -39,8 +39,8 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- Navigate buffers
-vim.keymap.set('n', '<S-h>', '<cmd>bprev<cr>', { desc = 'Go to prev buffer' })
-vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>', { desc = 'Go to next buffer' })
+vim.keymap.set('n', '<S-h>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'Go to prev buffer' })
+vim.keymap.set('n', '<S-l>', '<cmd>BufferLineCycleNext<cr>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', '<leader>c', '<cmd>bdelete<cr>', { desc = 'Close the current buffer' })
 vim.keymap.set('n', '[b', '<cmd>BufferLineMovePrev<cr>', { desc = 'Go to next buffer' })
 vim.keymap.set('n', ']b', '<cmd>BufferLineMoveNext<cr>', { desc = 'Go to next buffer' })
